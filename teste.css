@@ -61,5 +61,51 @@ a{
 
 main{
   padding: 12px;
+  display: flex;
+  flex-direction: column;
   transition: margin-left 0.5s;
+  align-items: center;
+  width: 98%;
+  height: 80%;
+}
+
+.tabela{
+  border-radius: 20px;
+  border-collapse: collapse;
+  display: inline-table;
+  width: 100%;
+}
+
+
+.fundo{
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 20px;
+  width: 90%;
+  height: 90%;
+}
+
+table, td, th{
+  padding: 10px;
+  text-align: center;
+}
+
+td{
+  background-color: #90D096;  
+}
+.inicio{
+  border-radius: 20px 0px 0px 0px;
+}
+
+.final{
+  border-radius: 0px 20px 0px 0px;
+}
+
+.thead{
+  background-color: #5FBD69;
+}
+
+h{
+  margin-top: 20px;
+  font-size: 25px; 
 }
