@@ -71,11 +71,14 @@ main{
 
 .tabela{
   border-radius: 20px;
-  border-collapse: collapse;
-  display: inline-table;
+  display:flex;
+  flex-direction:column;
   width: 100%;
 }
 
+.fundo{
+  border: 1px solid black;
+}
 
 .fundo{
   margin-top: 20px;
@@ -85,14 +88,23 @@ main{
   height: 90%;
 }
 
-table, td, th{
-  padding: 10px;
-  text-align: center;
+.thead, .titen{
+  border-radius:20px 20px 0px 0px;  
+  display:flex;
+  flex-direction: row;
 }
 
-td{
-  background-color: #90D096;  
+.thead.div, .titen.div{
+  margin-left:10px;
 }
+
+.col-ro, .inicio, .final{
+  border: 1px solid black;
+  padding:10px;
+  width:25%;
+  text-align:center;
+}
+
 .inicio{
   border-radius: 20px 0px 0px 0px;
 }
