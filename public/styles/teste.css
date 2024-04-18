@@ -66,7 +66,7 @@ main{
   transition: margin-left 0.5s;
   align-items: center;
   width: 98%;
-  height: 80%;
+  height: 70%;
 }
 
 .tabela{
@@ -120,4 +120,15 @@ main{
 h{
   margin-top: 20px;
   font-size: 25px; 
+}
+
+.logo{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  margin: 0px;
+}
+
+.img{
+  width: 300px;
 }
