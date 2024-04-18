@@ -1,0 +1,123 @@
+.cabecalho{
+    display: flex;
+    font-size: 0.5cm;
+    border: 1px solid black;
+    margin: 0px;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3B8142;
+}
+
+body{
+  margin: 0px;
+  background-color: #90D096;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    width: 250px;
+}
+
+a{
+    text-decoration: none;
+    font-family: "Patrick Hand SC", cursive;
+    font-weight: 800;
+    font-style: normal;
+    color: #3C3A5D;
+}
+
+.ini{
+  display:flex;
+  width: 180px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itens{
+  height:100%;
+  width: 0px;
+  position: fixed;
+  overflow: hidden;
+  background-color: #3B8142;
+  transition: width 0.3s; 
+}
+
+.itens p{
+  display: block;
+  border: 1px solid black;
+  background-color: #90D096;
+  text-align: center;
+  border-radius: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 10px 12px;
+}
+
+.itens p:hover{
+  background-color: aqua;
+}
+
+main{
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.5s;
+  align-items: center;
+  width: 98%;
+  height: 80%;
+}
+
+.tabela{
+  border-radius: 20px;
+  display:flex;
+  flex-direction:column;
+  width: 100%;
+}
+
+.fundo{
+  border: 1px solid black;
+}
+
+.fundo{
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 20px;
+  width: 90%;
+  height: 90%;
+}
+
+.thead, .titen{
+  border-radius:20px 20px 0px 0px;  
+  display:flex;
+  flex-direction: row;
+}
+
+.thead.div, .titen.div{
+  margin-left:10px;
+}
+
+.col-ro, .inicio, .final{
+  border: 1px solid black;
+  padding:10px;
+  width:25%;
+  text-align:center;
+}
+
+.inicio{
+  border-radius: 20px 0px 0px 0px;
+}
+
+.final{
+  border-radius: 0px 20px 0px 0px;
+}
+
+.thead{
+  background-color: #5FBD69;
+}
+
+h{
+  margin-top: 20px;
+  font-size: 25px; 
+}

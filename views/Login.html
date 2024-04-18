@@ -3,16 +3,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sentinela</title>
-    <link rel="shortcut icon" type="imagex/png" href="../logo.ico">
-    <link rel="stylesheet" href="../login.css">
+    <link rel="shortcut icon" type="imagex/png" href="/static/logo.ico">
+    <link rel="stylesheet" href="/styles/login.css">
   <head>
   <body>
     <div class="pagina">
-        <div class="timer" id="timer">
-            <h2>Timer</h2>
-            <h2 class="tempo" id="tempo">25:00</h2>
-            <button onclick="Estudo()" id="botao"></button>
-        </div>
+        <form action="/login" class="timer" method="post">
+            <img src='/static/logo.png' class='imgMenu'></img>
+            <p>Login</p>
+            <input type="text">
+            <p>Senha</p>
+            <input type="password">
+            <input type="submit" class="botao" value="Entrar">
+        </form>
     </div>
   </body>
 </html>
