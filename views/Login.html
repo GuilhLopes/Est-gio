@@ -8,12 +8,12 @@
   <head>
   <body>
     <div class="pagina">
-        <form action="/pacientes" class="timer" method="get">
+        <form action="/api/login" class="timer" method="post">
             <img src='/static/logo.png' class='imgMenu'></img>
             <p>Login</p>
-            <input type="text">
+            <input name="nome" type="text">
             <p>Senha</p>
-            <input type="password">
+            <input name="senha" type="password">
             <input type="submit" class="botao" value="Entrar">
         </form>
     </div>

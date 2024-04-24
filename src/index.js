@@ -1,6 +1,8 @@
 const express = require('express');
 const session = require('express-session');
 const bodyparser = require('body-parser');
+const apirotas = require('./rotas/rotasApi.js');
+const rotasfront = require('./rotas/rotasFront.js')
 
 const port = 3000;
 var path = require('path');
@@ -14,18 +16,8 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, '../public')));
 app.set('views', path.join(__dirname, '../views'));
 
-
-app.get('/', function(req,res){
-    res.render('Login');
-});
-
-app.get('/pacientes', function(req,res){
-    res.render('Pacientes');
-});
-
-app.get('/lista_agend', function(req,res) {
-  res.render('Lista_agendamento');
-});
+app.use('/api', apirotas);
+app.use('/', rotasfront);
 
 app.listen(port, ()=>{
     console.log('Site está rodando na porta 3000!');
