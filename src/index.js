@@ -19,8 +19,12 @@ app.get('/', function(req,res){
     res.render('Login');
 });
 
-app.post('/login', function(req,res){
+app.get('/pacientes', function(req,res){
     res.render('Pacientes');
+});
+
+app.get('/lista_agend', function(req,res) {
+  res.render('Lista_agendamento');
 });
 
 app.listen(port, ()=>{
