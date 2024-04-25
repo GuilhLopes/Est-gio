@@ -8,9 +8,6 @@ const dbconfig = {
 
 async function conectar(){
     let connection = await oracledb.getConnection(dbconfig);
-
-    console.log('conexão com o banco efetuada!!');
-
     return connection
 }
 

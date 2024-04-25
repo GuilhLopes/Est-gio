@@ -2,26 +2,6 @@ const express = require('express');
 const rotas = express.Router();
 const {conectar, oracledb} = require('../DAO/connection.js');
 
-rotas.get('/prestadores', async function(req, res){
-    let conn;
-
-    try{
-        conn = await conectar();
-
-        let select = 'select * from hsspres';
-        let prestadores = await conn.execute(select, [], {outFormat: oracledb.OUT_FORMAT_OBJECT});
-
-        res.status(200).json(prestadores.rows);
-
-    }catch(error){
-        console.log(error);
-        res.status(500).json(error);
-    }finally{
-        if(conn){
-            await conn.close();
-        }
-    }
-});
 
 rotas.post('/login', async function(req, res){
     let nome = req.body.nome;
@@ -37,7 +17,7 @@ rotas.post('/login', async function(req, res){
         if(prestadores.rows.length == 0){
             res.status(500).json('Prestador não encontrado');
         }else{
-            res.redirect('/pacientes')
+            res.redirect('/pacientes?nome=' + nome)
         }
 
     }catch(error){
@@ -48,6 +28,32 @@ rotas.post('/login', async function(req, res){
             await conn.close();
         }
     }
+});
+
+rotas.get('/pacientes', async function(req, res){
+    let conn;
+
+    try{
+        conn = await conectar();
+
+        let select = "SELECT P.CNOMEPESS, T.CNUMETEL, P.CEMAILPESS FROM HSSPESS P ,UNIPESSTEL U ,HSSTEL T WHERE P.NNUMEPESS = U.NUMEPESS AND T.NNUMETEL = U.NNUMETEL AND U.CPRINCTEL = 'S'";
+        let pacientes = await conn.execute(select, [], {outFormat: oracledb.OUT_FORMAT_OBJECT});
+
+        if(pacientes.rows.length == 0){
+            res.status(500).json('Nenhum paciente encontrado');
+        }else{
+            res.status(200).send(pacientes.rows);
+        }
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error);
+    }finally{
+        if(conn){
+            await conn.close();
+        }
+    }
+
 });
 
 module.exports = rotas;
