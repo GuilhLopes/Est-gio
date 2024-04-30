@@ -3,7 +3,7 @@
     font-size: 0.5cm;
     border: 1px solid black;
     margin: 0px;
-    padding: 5px ;
+    padding: 10px 20px;
     justify-content: space-between;
     align-items: center;
     background-color: #3B8142;
@@ -30,7 +30,7 @@ a{
 
 .ini{
   display:flex;
-  width: 180px;
+  width: 210px;
   justify-content: space-between;
   align-items: center;
 }
@@ -47,7 +47,6 @@ a{
   justify-content: space-between;
 }
 
-
 .itens button{
   display: block;
   border: 1px solid black;
@@ -60,6 +59,7 @@ a{
   margin-right: 5px;
   padding: 10px 12px;
 }
+
 .itens button:hover{
   background-color: aqua;
 }
@@ -74,53 +74,6 @@ main{
   height: 70%;
 }
 
-.tabela{
-  border-radius: 20px;
-  display:flex;
-  flex-direction:column;
-  width: 100%;
-}
-
-.fundo{
-  border: 1px solid black;
-}
-
-.fundo{
-  margin-top: 20px;
-  background-color: white;
-  border-radius: 20px;
-  width: 100%;
-  height: 90%;
-}
-
-.thead, .titen{
-  border-radius:20px 20px 0px 0px;  
-  display:flex;
-  flex-direction: row;
-}
-
-.thead.div, .titen.div{
-  margin-left:10px;
-}
-
-.col-ro, .inicio, .final{
-  border: 1px solid black;
-  padding:10px;
-  width:19%;
-  text-align:center;
-}
-
-.inicio{
-  border-radius: 20px 0px 0px 0px;
-}
-
-.final{
-  border-radius: 0px 20px 0px 0px;
-}
-
-.thead{
-  background-color: #5FBD69;
-}
 
 h{
   margin-top: 20px;
@@ -130,10 +83,63 @@ h{
 .logo{
   display: flex;
   margin: 0px;
-  width: 50%;
-  justify-content: center;
 }
 
 .logo img{
   width: 150px;
+}
+
+.dados{
+  background-color: #5FBD69;
+  width: 100%;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.titulo, .dados_p{
+  padding-left: 20px;
+}
+
+.dados_p{
+  display: flex;
+  width: 98%;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.calendar {
+  max-width: 100%;
+  width: 100%;
+  margin: 50px auto;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: white;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2em;
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-day {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  height: 60px;
 }

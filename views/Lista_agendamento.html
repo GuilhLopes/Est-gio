@@ -25,15 +25,25 @@
     </header>
 
     <div class='itens' id='iten'>
-      <form action="/pacientes" class="timer" method="get"><button>Lista de pacientes</button></form>
-      <form action="/lista_agend" class="timer" method="get"><button href='/lista_agend'>Lista de agendamento</button></form>
-      <button>Agendamento</button>
+      <div>
+        <form action="/pacientes" class="timer" method="get"><button>Lista de pacientes</button></form>
+        <form action="/lista_agend" class="timer" method="get"><button>Lista de agendamento</button></form>
+        <form action="/agendamento" class="timer" method="get"><button>Agendamento</button></form>
+      </div>
+      <div>
+        <form action="/" class="timer" method="get"><button>Sair</button></form>
+      </div>
     </div>
     <main>
-      <h>Lista de agendamento</h>
       <div class='dados'>
-        
+        <h2 class="titulo">Dados do Paciente</h2>
+        <div class='dados_p'>
+          <p>Nome: Guilherme Marques Lopes</p>
+          <p>Telefone: (43) 99909-7316</p>
+          <p>E-mail: gm589072@gmail.com</p>
+        </div>
       </div>
+      <h>Lista de agendamento</h>
       <div class='fundo'>
         <div class='tabela' id='tabela'>
           <div class='thead'>
@@ -48,7 +58,7 @@
               <div class='col-ro'>14:00</div>
               <div class='col-ro'>08/02/2024</div>
               <div class='col-ro'>Av airlton sena, 1065</div>
-              <div class='col-ro'><img src='/static/Group.png' class='imgMenu' id='img'></div>
+              <div class='col-ro'><a href="/agendamento"><img src='/static/Group.png' class='imgMenu' id='img'></a></div>
           </div>
         </div>
       </div>

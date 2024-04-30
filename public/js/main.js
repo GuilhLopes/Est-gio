@@ -73,7 +73,7 @@ function addLinhas(pacientes){
     divagend.setAttribute("class", 'col-ro');
 
     let agend = document.createElement('a');
-    agend.setAttribute('href', '/lista_agend');
+    agend.setAttribute('href', '/agendamento');
 
     let imgagend = document.createElement('img')
     imgagend.setAttribute("class", 'imgMenu');

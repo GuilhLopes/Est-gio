@@ -13,4 +13,9 @@ rotas.get('/lista_agend', function(req,res) {
   res.render('Lista_agendamento');
 });
 
+rotas.get('/agendamento', function(req,res) {
+  res.render('agendamento');
+});
+
+
 module.exports = rotas;

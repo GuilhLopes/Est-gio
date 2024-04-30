@@ -1,0 +1,63 @@
+  
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sentinela</title>
+      <link rel="shortcut icon" type="imagex/png" href="/static/logo.ico">
+      <link rel="stylesheet" href="/styles/agendamento.css">
+    <head>
+    <body>
+      <header class="cabecalho">
+          <div class='ini'>
+            <div class='menu'>
+              <img src='/static/Vector.png' class='imgMenu' id='img' onmouseover="abrir()" onmouseout="fechar()"></img>
+            </div>
+            <p class="robinson">Lista de Agendamento</p>
+          </div>
+              
+      <div class='logo'>
+        <img src='/static/unimed.png' class="img"></img>
+      </div>
+          <nav>
+              <p id='teste'></p>
+          </nav>
+      </header>
+  
+      <div class='itens' id='iten'>
+        <div>
+          <form action="/pacientes" class="timer" method="get"><button>Lista de pacientes</button></form>
+          <form action="/lista_agend" class="timer" method="get"><button>Lista de agendamento</button></form>
+          <form action="/agendamento" class="timer" method="get"><button>Agendamento</button></form>
+        </div>
+        <div>
+          <form action="/" class="timer" method="get"><button>Sair</button></form>
+        </div>
+      </div>
+
+      <main>
+        <div class='dados'>
+          <h2 class="titulo">Dados do Paciente</h2>
+          <div class='dados_p'>
+            <p>Nome: Guilherme Marques Lopes</p>
+            <p>Telefone: (43) 99909-7316</p>
+            <p>E-mail: gm589072@gmail.com</p>
+          </div>
+        </div>
+        
+        <div class="calendar">
+          <div class="calendar-header">
+            <button id="prevMonthBtn">&lt;</button>
+            <h2 id="currentMonthYear"></h2>
+            <button id="nextMonthBtn">&gt;</button>
+          </div>
+          <div class="calendar-body" id="calendarBody"></div>
+        </div>
+
+      </main>
+  
+      
+        
+      <script src="/js/agendamento.js"></script>  
+    </body>
+  </html>
