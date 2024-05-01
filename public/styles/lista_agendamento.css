@@ -1,14 +1,13 @@
 .cabecalho{
-    display: flex;
-    font-size: 0.5cm;
-    border: 1px solid black;
-    margin: 0px;
-    padding: 10px 20px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #3B8142;
+  display: flex;
+  font-size: 0.5cm;
+  border: 1px solid black;
+  margin: 0px;
+  padding: 5px ;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3B8142;
 }
-
 body{
   margin: 0px;
   background-color: #90D096;
@@ -71,7 +70,7 @@ main{
   transition: margin-left 0.5s;
   align-items: center;
   width: 98%;
-  height: 70%;
+  height: 85%;
 }
 
 .tabela{

@@ -1,26 +1,23 @@
 const params = new URLSearchParams(window.location.search);
 var apertado = 0;
+
 retornarPacientes();
 
-
-const nome = params.get('nome');
+const nome = params.get('nome');  
 
 document.getElementById('teste').innerHTML = nome;
-
 
 function abrir(){
   document.getElementById('iten').style.border = '1px solid black';
   document.getElementById('iten').style.width = '250px';
-  document.getElementById('img').setAttribute('onclick', 'fechar()');
-
+  document.getElementById('iten').setAttribute('onmouseout', 'fechar()');
 }
 
 function fechar(){
   document.getElementById('iten').style.width = '0px';
   document.getElementById('iten').style.border = '';
-  document.getElementById('img').setAttribute('onclick', 'abrir()');
+  document.getElementById('iten').setAttribute('onmouseout', 'abrir()')
 }
-
 function fazerGet(url){
   let request = new XMLHttpRequest();
   request.open("GET", url, false);
@@ -58,22 +55,24 @@ function addLinhas(pacientes){
     let divlista = document.createElement('div');
     divlista.setAttribute("class", 'col-ro');
 
-    let a = document.createElement('a');
-    a.setAttribute('href', '/lista_agend');
+    let b = document.createElement('button');
+    b.setAttribute('class', 'calend');
+    b.setAttribute('onclick', 'redirecionar("lista_agend")');
 
     let img = document.createElement('img');
     img.setAttribute("class", 'imgMenu');
     img.setAttribute("src", '/static/Group.png');
     img.setAttribute("id", 'img');
 
-    a.append(img);
-    divlista.append(a);
+    b.append(img);
+    divlista.append(b);
 
     let divagend = document.createElement('div');
     divagend.setAttribute("class", 'col-ro');
 
-    let agend = document.createElement('a');
-    agend.setAttribute('href', '/agendamento');
+    let agend = document.createElement('button');
+    agend.setAttribute('class', 'calend');
+    agend.setAttribute('onclick', 'redirecionar("agendamento")');
 
     let imgagend = document.createElement('img')
     imgagend.setAttribute("class", 'imgMenu');
@@ -100,4 +99,8 @@ function formatarTel(tel){
   telaux1 = tel.slice(2,7);
   telaux2 = tel.slice(7,11);
   return '(' + telddd + ') ' + telaux1 + '-' + telaux2;
+}
+
+function redirecionar(tipo){
+  window.location = "/" + tipo + "?nome=" + nome;
 }

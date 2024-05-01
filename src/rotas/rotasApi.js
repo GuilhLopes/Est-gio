@@ -14,10 +14,10 @@ rotas.post('/login', async function(req, res){
         let select = 'select * from hsspres p where p.clogpres = :1 AND P.csenpres = :2';
         let prestadores = await conn.execute(select, [nome, senha], {outFormat: oracledb.OUT_FORMAT_OBJECT});
 
-        if(prestadores.rows.length == 0){
-            res.status(500).json('Prestador não encontrado');
+        if(prestadores.rows.length){
+            res.redirect('/pacientes?nome=' + nome);
         }else{
-            res.redirect('/pacientes?nome=' + nome)
+            res.status(500).json('Prestador não encontrado');
         }
 
     }catch(error){

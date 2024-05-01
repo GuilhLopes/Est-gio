@@ -137,3 +137,8 @@ h{
 .logo img{
   width: 150px;
 }
+
+.calend{
+  border: 0px;
+  background-color: white;
+}
