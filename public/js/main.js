@@ -1,11 +1,13 @@
 const params = new URLSearchParams(window.location.search);
 var apertado = 0;
+const nome = params.get('nome'); 
+
+document.getElementById('teste').innerHTML = nome;
 
 retornarPacientes();
 
-const nome = params.get('nome');  
+ 
 
-document.getElementById('teste').innerHTML = nome;
 
 function abrir(){
   document.getElementById('iten').style.border = '1px solid black';
@@ -18,6 +20,7 @@ function fechar(){
   document.getElementById('iten').style.border = '';
   document.getElementById('iten').setAttribute('onmouseout', 'abrir()')
 }
+
 function fazerGet(url){
   let request = new XMLHttpRequest();
   request.open("GET", url, false);

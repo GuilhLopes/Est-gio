@@ -17,7 +17,7 @@ rotas.post('/login', async function(req, res){
         if(prestadores.rows.length){
             res.redirect('/pacientes?nome=' + nome);
         }else{
-            res.status(500).json('Prestador não encontrado');
+            res.redirect('/?error=Credenciais inválidas');
         }
 
     }catch(error){
@@ -36,7 +36,7 @@ rotas.get('/pacientes', async function(req, res){
     try{
         conn = await conectar();
 
-        let select = "SELECT P.CNOMEPESS, T.CNUMETEL, P.CEMAILPESS FROM HSSPESS P ,UNIPESSTEL U ,HSSTEL T WHERE P.NNUMEPESS = U.NUMEPESS AND T.NNUMETEL = U.NNUMETEL AND U.CPRINCTEL = 'S'";
+        let select = "SELECT P.CNOMEPESS, T.CNUMETEL, P.CEMAILPESS FROM HSSPESS P ,UNIPESSTEL U ,HSSTEL T WHERE P.NNUMEPESS = U.NNUMEPESS AND T.NNUMETEL = U.NNUMETEL AND U.CPRINCTEL = 'S'";
         let pacientes = await conn.execute(select, [], {outFormat: oracledb.OUT_FORMAT_OBJECT});
 
         if(pacientes.rows.length == 0){
