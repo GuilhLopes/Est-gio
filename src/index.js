@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyparser = require('body-parser');
 const apirotas = require('./rotas/rotasApi.js');
-const rotasfront = require('./rotas/rotasFront.js')
+const rotasfront = require('./rotas/rotasFront.js');
 
 const port = 3000;
 var path = require('path');
