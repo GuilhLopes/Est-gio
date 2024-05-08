@@ -17,5 +17,9 @@ rotas.get('/calendario', function(req,res) {
   res.render('calendario');
 });
 
+rotas.get('/agendamento', function(req,res){
+  res.render('agendamento');
+});
+
 
 module.exports = rotas;

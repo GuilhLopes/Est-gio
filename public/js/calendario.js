@@ -53,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   function renderCalendar(month, year) {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"];
+    let data = new Date();
+    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+      "Julho", "Augosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
@@ -68,16 +69,38 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     for (let i = 1; i <= daysInMonth; i++) {
-      const dayElement = document.createElement("button");
-      dayElement.classList.add("calendar-day-button");
-      dayElement.setAttribute('onclick',`agendar(${i}, ${month}, ${year})`)
-      dayElement.textContent = i;
-      calendarBody.appendChild(dayElement);
+      if(i == data.getDate() && month == data.getMonth() && year == data.getFullYear()){
+        const dayElement = document.createElement("button");
+        dayElement.classList.add("diaAtual");
+        dayElement.setAttribute('onclick',`agendar(${i}, ${month}, ${year})`)
+        dayElement.textContent = i;
+        calendarBody.appendChild(dayElement);
+
+      }else{
+        const dayElement = document.createElement("button");
+        dayElement.classList.add("calendar-day-button");
+        dayElement.setAttribute('onclick',`agendar(${i}, ${month}, ${year})`)
+        dayElement.textContent = i;
+        calendarBody.appendChild(dayElement);
+      }
     }
   }
 });
 
 function agendar(d,m,y){
-  window.location = "/"
+  let dia = formatarData(d);
+  let mes = formatarData(m);
+  console.log(dia)
+  console.log(mes)
+  window.location = "/agendamento?data=" + `${dia}/${mes}/${y}` + "&nome=" + nome;
 }
-  
+
+function formatarData(d){
+  let numero = '';
+  if(d < 10){
+    numero = '0' + d;
+  }else{
+    numero = d;
+  }
+  return numero;
+}
