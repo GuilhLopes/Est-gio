@@ -75,7 +75,7 @@ function addLinhas(pacientes){
 
     let agend = document.createElement('button');
     agend.setAttribute('class', 'calend');
-    agend.setAttribute('onclick', 'redirecionar("agendamento")');
+    agend.setAttribute('onclick', 'redirecionar("calendario")');
 
     let imgagend = document.createElement('img')
     imgagend.setAttribute("class", 'imgMenu');

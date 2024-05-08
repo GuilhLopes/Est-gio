@@ -13,8 +13,8 @@ rotas.get('/lista_agend', function(req,res) {
   res.render('Lista_agendamento');
 });
 
-rotas.get('/agendamento', function(req,res) {
-  res.render('agendamento');
+rotas.get('/calendario', function(req,res) {
+  res.render('calendario');
 });
 
 
