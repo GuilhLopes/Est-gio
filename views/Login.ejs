@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinela</title>
+    <link rel="shortcut icon" type="imagex/png" href="/static/logo.ico">
+    <link rel="stylesheet" href="/styles/login.css">
+  <head>
+  <body>
+    <div class="pagina">
+        <form action="/api/login" class="timer" method="post">
+            <img src='/static/logo.png' class='imgMenu'></img>
+            <p id="error" class="error"></p>
+            <p>Login</p>
+            <input name="nome" type="text">
+            <p>Senha</p>
+            <input name="senha" type="password">
+            <input type="submit" class="botao" value="Entrar">
+        </form>
+    </div>
+    <script src="/js/login.js"></script>  
+  </body>
+</html>

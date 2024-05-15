@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Sentinela</title>
       <link rel="shortcut icon" type="imagex/png" href="/static/logo.ico">
-      <link rel="stylesheet" href="/styles/calendario.css">
+      <link rel="stylesheet" href="/styles/agendamento.css">
     <head>
     <body>
       <header class="cabecalho">
@@ -20,7 +20,7 @@
         <img src='/static/unimed.png' class="img"></img>
       </div>
           <nav>
-              <p id='teste'></p>
+            <p id='teste'> <%= usuario %></p>
           </nav>
       </header>
   
@@ -37,27 +37,37 @@
 
       <main>
         <div class='dados'>
-          <h2 class="titulo">Dados do Paciente</h2>
+          <h2 class="titulo">Agendamento</h2>
           <div class='dados_p'>
-            <p>Nome: Guilherme Marques Lopes</p>
-            <p>Telefone: (43) 99909-7316</p>
-            <p>E-mail: gm589072@gmail.com</p>
+            <p id="nome"></p>
+            <p id="tel"></p>
+            <p id="email"></p>
           </div>
+            <div class="agendamento">
+                <div class="cartao">
+                  <label>Data</label>
+                  <input type="data" class="input" id="data" disabled>
+                </div>
+                <div class="cartao">
+                    <label>Horário</label>
+                    <input type="time" class="input-hora">
+                </div>
+                <div class="cartao">
+                  <label>Local</label>
+                  <select name="endereco" id="endereco">
+                  </select>
+                </div>
+            </div>
+            <div class="dbotao">
+              <button class="botao">salvar</button>
+            </div>
         </div>
-        
-        <div class="calendar">
-          <div class="calendar-header">
-            <button id="prevMonthBtn">&lt;</button>
-            <h2 id="currentMonthYear"></h2>
-            <button id="nextMonthBtn">&gt;</button>
-          </div>
-          <div class="calendar-body" id="calendarBody"></div>
-        </div>
+  
 
       </main>
   
       
         
-      <script src="/js/calendario.js"></script>  
+      <script src="/js/agendamento.js"></script>  
     </body>
   </html>

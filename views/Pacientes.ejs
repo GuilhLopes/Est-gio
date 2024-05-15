@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinela</title>
+    <link rel="shortcut icon" type="imagex/png" href="/static/logo.ico">
+    <link rel="stylesheet" href="/styles/pacientes.css">
+  <head>
+  <body>
+    <header class="cabecalho">
+        <div class='ini' onmouseover="abrir()" onmouseout="fechar()">
+          <div class='menu'>
+            <img src='/static/Vector.png' class='imgMenu' id='img' onclick='abrir()'></img>
+          </div>
+          <p class="robinson">Lista de Pacientes</p>
+        </div>
+        <div class='logo'>
+          <img src='/static/unimed.png' class="img"></img>
+        </div>
+        <nav>
+            <p id='teste'> <%= usuario %></p>
+        </nav>
+        
+        
+    </header>
+    <div class='itens' id='iten' onmouseover="abrir()" onmouseout="fechar()">
+      <div>
+        <button onclick="redirecionar('pacientes')">Lista de pacientes</button>
+        <button onclick="redirecionar('lista_agend')">Lista de agendamento</button>
+        <button onclick="redirecionar('calendario')">Agendamento</button>
+      </div>
+      <div>
+        <form action="/" method="get"><button>Sair</button></form>
+      </div>
+    </div>
+    <main id='main'>
+      <h>Lista de pacientes</h>
+      
+      <div class='fundo'>
+        <div class='tabela' id='tabela'>
+          <div class='thead'>
+            <div class='inicio'>Nome</div>
+            <div class='col-ro'>E-mail</div>
+            <div class='col-ro'>Telefone</div>
+            <div class='col-ro'>verificar agendamentos</div>
+            <div class='final'>agendar</div>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+    
+    
+    <script src="/js/main.js"></script>  
+  </body>
+</html>

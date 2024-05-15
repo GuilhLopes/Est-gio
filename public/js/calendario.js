@@ -1,8 +1,5 @@
-const params = new URLSearchParams(window.location.search);
-
-const nome = params.get('nome');  
-document.getElementById('teste').innerHTML =  nome;
-
+const id = localStorage.getItem('id');
+buscarPacientes();
 
 function abrir(){
   document.getElementById('iten').style.border = '1px solid black';
@@ -17,7 +14,7 @@ function fechar(){
 }
 
 function redirecionar(tipo){
-  window.location = "/" + tipo + "?nome=" + nome;
+  window.location = "/" + tipo;
 }
 
 
@@ -90,9 +87,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function agendar(d,m,y){
   let dia = formatarData(d);
   let mes = formatarData(m);
-  console.log(dia)
-  console.log(mes)
-  window.location = "/agendamento?data=" + `${dia}/${mes}/${y}` + "&nome=" + nome;
+  localStorage.setItem('data', `${dia}/${mes}/${y}`)
+  window.location = "/agendamento";
 }
 
 function formatarData(d){
@@ -103,4 +99,37 @@ function formatarData(d){
     numero = d;
   }
   return numero;
+}
+
+function fazerGet(url){
+  let request = new XMLHttpRequest();
+  request.open("GET", url, false);
+  request.send();
+  return request.responseText;
+}
+
+function fazerPost(url, body, callback) {
+  let request = new XMLHttpRequest();
+  request.open('POST', url);
+  request.setRequestHeader('Content-Type', 'application/json');
+  
+  request.onreadystatechange = function() {
+      if (request.readyState === 4 && request.status === 200) {
+          callback(JSON.parse(request.responseText));
+      }
+  };
+  
+  request.send(JSON.stringify(body));
+}
+
+function buscarPacientes() {
+  fazerPost('http://localhost:3000/api/paciente', {id:id}, function(pacientes) {
+      alterarPaciente(pacientes);
+  });
+}
+
+function alterarPaciente(paciente){
+  document.getElementById('nome').innerHTML = `Nome: ${paciente[0]['CNOMEPESS']}`;
+  document.getElementById('tel').innerHTML = `telefone: ${paciente[0]['CNUMETEL']}`;
+  document.getElementById('email').innerHTML = `E-mail: ${paciente[0]['CEMAILPESS']}`;
 }

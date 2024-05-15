@@ -1,59 +1,52 @@
 const express = require('express');
 const rotas = express.Router();
-const {conectar, oracledb} = require('../DAO/connection.js');
+const Medico = require('../controler/controllerMedico.js');
+const Paciente = require('../controler/controllerPaciente.js');
 
+
+let medico = new Medico();
+let paciente = new Paciente();
+
+rotas.get('/usuario', (req,res)=>{
+    res.status(200).send(req.session.nome);
+});
 
 rotas.post('/login', async function(req, res){
     let nome = req.body.nome;
     let senha = req.body.senha;
-    let conn;
 
-    try{
-        conn = await conectar();
-
-        let select = 'select * from hsspres p where p.clogpres = :1 AND P.csenpres = :2';
-        let prestadores = await conn.execute(select, [nome, senha], {outFormat: oracledb.OUT_FORMAT_OBJECT});
-
-        if(prestadores.rows.length){
-            res.redirect('/pacientes?nome=' + nome);
-        }else{
-            res.redirect('/?error=Credenciais inválidas');
-        }
-
-    }catch(error){
-        console.log(error);
-        res.status(500).json(error);
-    }finally{
-        if(conn){
-            await conn.close();
-        }
+    if(medico.fazerLogin(nome, senha)){
+        req.session.nome = nome;
+        res.redirect('/pacientes');
+    }else{
+        res.redirect('/?error=Credenciais inválidas');
     }
 });
 
 rotas.get('/pacientes', async function(req, res){
-    let conn;
 
-    try{
-        conn = await conectar();
+    let pacientes = await paciente.listarPacientes();
 
-        let select = "SELECT P.CNOMEPESS, T.CNUMETEL, P.CEMAILPESS FROM HSSPESS P ,UNIPESSTEL U ,HSSTEL T WHERE P.NNUMEPESS = U.NNUMEPESS AND T.NNUMETEL = U.NNUMETEL AND U.CPRINCTEL = 'S'";
-        let pacientes = await conn.execute(select, [], {outFormat: oracledb.OUT_FORMAT_OBJECT});
-
-        if(pacientes.rows.length == 0){
-            res.status(500).json('Nenhum paciente encontrado');
-        }else{
-            res.status(200).send(pacientes.rows);
-        }
-
-    }catch(error){
-        console.log(error);
-        res.status(500).json(error);
-    }finally{
-        if(conn){
-            await conn.close();
-        }
+    if(pacientes.rows.length == 0){
+        res.status(500).json('Nenhum paciente encontrado');
+    }else{
+        res.status(200).send(pacientes.rows);
     }
 
+});
+
+rotas.post('/paciente', async function(req,res){
+    const pacientes = await paciente.listarPaciente(req.body.id);
+
+    if(pacientes.rows.length == 0){
+        res.status(500).json('Nenhum paciente encontrado');
+    }else{
+        res.status(200).send(pacientes.rows);
+    }
+});
+
+rotas.post('/endereco', async function(req,res){
+    
 });
 
 module.exports = rotas;

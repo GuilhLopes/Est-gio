@@ -1,13 +1,6 @@
-const params = new URLSearchParams(window.location.search);
 var apertado = 0;
-const nome = params.get('nome'); 
-
-document.getElementById('teste').innerHTML = nome;
 
 retornarPacientes();
-
- 
-
 
 function abrir(){
   document.getElementById('iten').style.border = '1px solid black';
@@ -60,7 +53,7 @@ function addLinhas(pacientes){
 
     let b = document.createElement('button');
     b.setAttribute('class', 'calend');
-    b.setAttribute('onclick', 'redirecionar("lista_agend")');
+    b.setAttribute('onclick', `redirecionar("lista_agend", ${pacientes[i]['NNUMEPESS']})`);
 
     let img = document.createElement('img');
     img.setAttribute("class", 'imgMenu');
@@ -75,7 +68,7 @@ function addLinhas(pacientes){
 
     let agend = document.createElement('button');
     agend.setAttribute('class', 'calend');
-    agend.setAttribute('onclick', 'redirecionar("calendario")');
+    agend.setAttribute('onclick', `redirecionar("calendario", ${pacientes[i]['NNUMEPESS']})`);
 
     let imgagend = document.createElement('img')
     imgagend.setAttribute("class", 'imgMenu');
@@ -104,6 +97,7 @@ function formatarTel(tel){
   return '(' + telddd + ') ' + telaux1 + '-' + telaux2;
 }
 
-function redirecionar(tipo){
-  window.location = "/" + tipo + "?nome=" + nome;
+function redirecionar(tipo, id){
+  localStorage.setItem('id', id)
+  window.location = `/${tipo}`;
 }
