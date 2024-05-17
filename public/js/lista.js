@@ -51,5 +51,5 @@ function alterarPaciente(paciente){
 }
 
 function redirecionar(tipo){
-  window.location = `/${tipo}?id=${id}`;
+  window.location = `/${tipo}`;
 }

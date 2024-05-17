@@ -16,8 +16,11 @@ class medico{
             let prestadores = await conn.execute(select, [nome, senha], {outFormat: oracledb.OUT_FORMAT_OBJECT});
             
             await conn.close();
-
-            return prestadores;
+            if(prestadores.rows.length){
+                return prestadores;
+            }else{
+                return false;
+            }
 
         }catch(error){
             console.log(error);

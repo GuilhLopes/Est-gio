@@ -126,6 +126,13 @@
     margin: 10px 0px;
   }
 
+  .input-end{
+    width: 250px;
+    height: 25px;
+    border-radius: 20px;
+    margin: 10px 0px;
+  }
+
   .salvar{
     width: 150px;
     height: 40px;

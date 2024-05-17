@@ -20,7 +20,7 @@
         <img src='/static/unimed.png' class="img"></img>
       </div>
           <nav>
-            <p id='teste'> <%= usuario %></p>
+            <p id="login"><%= usuario %></p>
           </nav>
       </header>
   
@@ -43,24 +43,26 @@
             <p id="tel"></p>
             <p id="email"></p>
           </div>
-            <div class="agendamento">
+            <div >
+              <form class="agendamento" action="/api/agendamento" method="POST">
                 <div class="cartao">
                   <label>Data</label>
-                  <input type="data" class="input" id="data" disabled>
+                  <input type="data" name="data" class="input" id="data" readonly>
                 </div>
                 <div class="cartao">
                     <label>Horário</label>
-                    <input type="time" class="input-hora">
+                    <input type="time" name="hora" class="input-hora">
                 </div>
                 <div class="cartao">
                   <label>Local</label>
-                  <select name="endereco" id="endereco">
+                  <select name="endereco" class="input-end" id="endereco">
                   </select>
                 </div>
             </div>
             <div class="dbotao">
-              <button class="botao">salvar</button>
+              <input type="submit" value="Salvar" class="botao"></input>
             </div>
+            </form>
         </div>
   
 

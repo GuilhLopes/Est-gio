@@ -1,9 +1,10 @@
 const id = localStorage.getItem('id');
 buscarPacientes();
 
+const nome = document.getElementById('login').innerHTML;
+buscarEndereco();
 const data = localStorage.getItem('data');
-
-console.log(data)
+console.log(data);
 
 document.getElementById('data').value = data;
 
@@ -34,6 +35,7 @@ function fazerPost(url, body, callback) {
   
   request.onreadystatechange = function() {
       if (request.readyState === 4 && request.status === 200) {
+          console.log(request.responseText)
           callback(JSON.parse(request.responseText));
       }
   };
@@ -51,6 +53,22 @@ function alterarPaciente(paciente){
   document.getElementById('nome').innerHTML = `Nome: ${paciente[0]['CNOMEPESS']}`;
   document.getElementById('tel').innerHTML = `Telefone: ${paciente[0]['CNUMETEL']}`;
   document.getElementById('email').innerHTML = `E-mail: ${paciente[0]['CEMAILPESS']}`;
+}
+
+function buscarEndereco(){
+  fazerPost('http://localhost:3000/api/endereco', {nome: nome}, function(endereco){
+    inserirEndereco(endereco);
+  });
+}
+
+function inserirEndereco(endereco){
+  for(let i = 0; i < endereco.length; i++){
+    let option = document.createElement('option');
+    option.setAttribute('value', endereco[i]['NNUMEEND']);
+    option.text = `${endereco[i]['CDESCEND']} ${endereco[i]['CNUMEEND']}`;
+
+    document.getElementById('endereco').add(option)
+  }
 }
 
 function redirecionar(tipo){

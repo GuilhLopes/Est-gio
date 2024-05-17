@@ -15,13 +15,8 @@ class paciente{
             let select = "SELECT P.NNUMEPESS, P.CNOMEPESS, T.CNUMETEL, P.CEMAILPESS FROM HSSPESS P ,UNIPESSTEL U ,HSSTEL T WHERE P.NNUMEPESS = U.NNUMEPESS AND T.NNUMETEL = U.NNUMETEL AND U.CPRINCTEL = 'S'";
             let pacientes = await conn.execute(select, [], {outFormat: oracledb.OUT_FORMAT_OBJECT});
             await conn.close();
-
-            if(pacientes.rows.length == 0){
-                return null;
-            }else{
-                return pacientes;
+            return pacientes;
                 
-            }
 
         }catch(error){
             console.log(error);

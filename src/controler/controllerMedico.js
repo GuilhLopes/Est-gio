@@ -8,10 +8,14 @@ class controllerMedico{
     async fazerLogin(nome, senha){
         
         let prestadores = await medico.buscarMedico(nome,senha);
-        if(prestadores.rows.length){
-            return true
+        if(prestadores){
+            if(prestadores.rows[0]['CLOGPRES'] == nome && prestadores.rows[0]['CSENPRES'] == senha){
+                return true;
+            }else{
+                return false;
+            }
         }else{
-            return false
+            return false;
         }
     }
 }
