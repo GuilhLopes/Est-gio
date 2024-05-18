@@ -3,6 +3,7 @@ const rotas = express.Router();
 const Medico = require('../controler/controllerMedico.js');
 const Paciente = require('../controler/controllerPaciente.js');
 const Agendamento = require('../controler/controllerAgendamento.js');
+const session = require('express-session');
 
 let medico = new Medico();
 let paciente = new Paciente();
@@ -32,6 +33,7 @@ rotas.get('/pacientes', async function(req, res){
 });
 
 rotas.post('/paciente', async function(req,res){
+    session.idpaciente = req.body.id;
     const pacientes = await paciente.listarPaciente(req.body.id);
     res.status(200).send(pacientes.rows);
     
@@ -51,9 +53,14 @@ rotas.post('/agendamento', async function(req,res){
     if(await agendamento.tratamentoDados(hora,data,end)){
         res.status(200).redirect('/calendario');
     }else{
+        session.error = true;
         res.status(500).redirect('/agendamento');
     }
 
-})
+});
+
+rotas.post('/listar_agendamentos', async function(req, res){
+    
+});
 
 module.exports = rotas;

@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const rotas = express.Router();
 
 function verificarLogin(req, res, next){
@@ -11,6 +12,7 @@ function verificarLogin(req, res, next){
 }
 
 rotas.get('/', function(req,res){
+    session.error = '';
     res.render('Login');
 });
 
@@ -27,7 +29,12 @@ rotas.get('/calendario',verificarLogin, function(req,res) {
 });
 
 rotas.get('/agendamento', verificarLogin,function(req,res){
-  res.render('agendamento');
+  if(!session.error){
+    res.render('agendamento');
+  }else{
+    session.error = '';
+    res.render('agendamento_e');
+  }
 });
 
 

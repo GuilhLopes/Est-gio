@@ -175,3 +175,10 @@
     color:black;
     margin-bottom: 10px;
 }
+
+
+.error{
+  text-align: center;
+  font-size: 20px;
+  color: red;
+}

@@ -1,3 +1,4 @@
+const session = require('express-session');
 const Agendamento = require('../model/agendamento.js');
 
 let agendamento = new Agendamento();
@@ -19,9 +20,12 @@ class controllerAgendamento{
         if(!hora || !data || !end){
             return false;
         }else{
+            let datah = `${data} ${hora}:00`
+            console.log(session.idpaciente) 
             let dados = {
-                hora: hora,
-                data: data,
+                idmedico: session.loginid,
+                idpaciente: session.idpaciente,
+                datacom: datah,
                 end: end
             }
             await agendamento.gravarAgendamento(dados);

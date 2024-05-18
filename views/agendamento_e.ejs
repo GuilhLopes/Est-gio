@@ -1,0 +1,77 @@
+  
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sentinela</title>
+      <link rel="shortcut icon" type="imagex/png" href="/static/logo.ico">
+      <link rel="stylesheet" href="/styles/agendamento.css">
+    <head>
+    <body>
+      <header class="cabecalho">
+          <div class='ini' onmouseover="abrir()" onmouseout="fechar()">
+            <div class='menu'>
+              <img src='/static/Vector.png' class='imgMenu' id='img' ></img>
+            </div>
+            <p class="robinson">Agendamento</p>
+          </div>
+              
+      <div class='logo'>
+        <img src='/static/unimed.png' class="img"></img>
+      </div>
+          <nav>
+            <p id="login"><%= usuario %></p>
+          </nav>
+      </header>
+  
+      <div class='itens' id='iten' onmouseover="abrir()" onmouseout="fechar()">
+        <div>
+          <button onclick="redirecionar('pacientes')">Lista de pacientes</button>
+          <button onclick="redirecionar('lista_agend')">Lista de agendamento</button>
+          <button onclick="redirecionar('calendario')">Agendamento</button>
+        </div>
+        <div>
+          <form action="/" method="get"><button>Sair</button></form>
+        </div>
+      </div>
+
+      <main>
+        <div class='dados'>
+          <h2 class="titulo">Agendamento</h2>
+          <div class='dados_p'>
+            <p id="nome"></p>
+            <p id="tel"></p>
+            <p id="email"></p>
+          </div>
+            <div >
+              <form class="agendamento" action="/api/agendamento" method="POST">
+                <div class="cartao">
+                  <label>Data</label>
+                  <input type="data" name="data" class="input" id="data" readonly>
+                </div>
+                <div class="cartao">
+                    <label>Horário</label>
+                    <input type="time" name="hora" class="input-hora">
+                </div>
+                <div class="cartao">
+                  <label>Local</label>
+                  <select name="endereco" class="input-end" id="endereco">
+                  </select>
+                </div>
+                
+            </div>
+            <p class="error">Dados inválidos ou está faltando dados</p>
+            <div class="dbotao">
+              <input type="submit" value="Salvar" class="botao"></input>
+            </div>
+            </form>
+        </div>
+  
+
+      </main>
+  
+      
+        
+      <script src="/js/agendamento.js"></script>  
+    </body>
+  </html>

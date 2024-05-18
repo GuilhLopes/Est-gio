@@ -23,8 +23,14 @@ class agendamento{
         try{
             conn = await conectar();
 
-            //let select = `INSERT INTO HSSAGEND (NNUMEPRES, NNUMEPESS, DAGENDAMENTO, DINCLUAGEND, NNUMEEND) VALUES (${},${}, TO_DATE(NVL('',${}),'DD/MM/YYYY HH24:MI:SS'), SYSDATE, 1)`;
-            //let resposta = await conn.execute(select, [nome], {outFormat: oracledb.OUT_FORMAT_OBJECT});
+            let select = `INSERT INTO HSSAGEND (NNUMEPRES, NNUMEPESS, DAGENDAMENTO, DINCLUAGEND, NNUMEEND) VALUES (:1,:2, TO_DATE(NVL('',:3),'DD/MM/YYYY HH24:MI:SS'), SYSDATE, 1)`;
+            await conn.execute(select, [dados['idmedico'], dados['idpaciente'], dados['datacom']], {autoCommit: true}, function(e,s){
+                if(e){
+                    console.log(e);
+                }else{
+                    console.log(s);
+                }
+            });
             await conn.close();
 
         }catch(error){
