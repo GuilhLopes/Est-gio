@@ -8,7 +8,7 @@ const port = 3000;
 var path = require('path');
 const app = express();
 
-app.use(session({secret:'2h1vbjwbqndj2b1i4k1n4',resave:true, urlencoded:true}));
+app.use(session({secret:'2h1vbjwbqndj2b1i4k1n4',resave:true, urlencoded:true, cookie:{maxAge: 24 * 60 * 60 * 1000}}));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.engine('html', require('ejs').renderFile);

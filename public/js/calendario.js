@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const calendarBody = document.getElementById("calendarBody");
 
   let currentDate = new Date();
-  let currentMonth = currentDate.getMonth();
+  let currentMonth = currentDate.getMonth() + 1;
   let currentYear = currentDate.getFullYear();
 
   renderCalendar(currentMonth, currentYear);
@@ -53,10 +53,10 @@ document.addEventListener("DOMContentLoaded", function() {
     let data = new Date();
     const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
       "Julho", "Augosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInMonth = new Date(year, month, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
-    currentMonthYear.textContent = `${monthNames[month]} ${year}`;
+    currentMonthYear.textContent = `${monthNames[month - 1]} ${year}`;
     calendarBody.innerHTML = "";
 
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     for (let i = 1; i <= daysInMonth; i++) {
-      if(i == data.getDate() && month == data.getMonth() && year == data.getFullYear()){
+      if(i == data.getDate() && month == (data.getMonth() + 1) && year == data.getFullYear()){
         const dayElement = document.createElement("button");
         dayElement.classList.add("diaAtual");
         dayElement.setAttribute('onclick',`agendar(${i}, ${month}, ${year})`)
@@ -130,6 +130,13 @@ function buscarPacientes() {
 
 function alterarPaciente(paciente){
   document.getElementById('nome').innerHTML = `Nome: ${paciente[0]['CNOMEPESS']}`;
-  document.getElementById('tel').innerHTML = `telefone: ${paciente[0]['CNUMETEL']}`;
+  document.getElementById('tel').innerHTML = `Telefone: ${formatarTel(paciente[0]['CNUMETEL'])}`;
   document.getElementById('email').innerHTML = `E-mail: ${paciente[0]['CEMAILPESS']}`;
+}
+
+function formatarTel(tel){
+  telddd = tel.slice(0,2);
+  telaux1 = tel.slice(2,7);
+  telaux2 = tel.slice(7,11);
+  return '(' + telddd + ') ' + telaux1 + '-' + telaux2;
 }

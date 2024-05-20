@@ -32,6 +32,15 @@ class controllerAgendamento{
             return true;
         }
     }
+
+    async resgatarAgendamento(idpaciente){
+        let agend = await agendamento.buscarAgendamento(idpaciente);
+        if(agend.rows.length){
+            return agend;
+        }else{
+            return false;
+        }
+    }
 }
 
 module.exports = controllerAgendamento;

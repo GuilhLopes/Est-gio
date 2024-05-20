@@ -12,8 +12,12 @@ function verificarLogin(req, res, next){
 }
 
 rotas.get('/', function(req,res){
-    session.error = '';
-    res.render('Login');
+    if(!session.error){
+      res.render('Login');
+    }else{
+      session.error = '';
+      res.render('Login_e');
+    }
 });
 
 rotas.get('/pacientes', verificarLogin,function(req,res){

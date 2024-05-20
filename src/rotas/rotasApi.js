@@ -22,7 +22,8 @@ rotas.post('/login', async function(req, res){
         req.session.nome = nome;
         res.redirect('/pacientes');
     }else{
-        res.redirect('/?error=Credenciais inválidas');
+        session.error = true;
+        res.redirect('/');
     }
 });
 
@@ -60,7 +61,9 @@ rotas.post('/agendamento', async function(req,res){
 });
 
 rotas.post('/listar_agendamentos', async function(req, res){
-    
+    let idpaciente = req.body.id;
+    let resposta = await agendamento.resgatarAgendamento(idpaciente);
+    res.status(200).send(resposta.rows);
 });
 
 module.exports = rotas;

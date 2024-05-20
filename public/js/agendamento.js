@@ -51,8 +51,15 @@ function buscarPacientes() {
 
 function alterarPaciente(paciente){
   document.getElementById('nome').innerHTML = `Nome: ${paciente[0]['CNOMEPESS']}`;
-  document.getElementById('tel').innerHTML = `Telefone: ${paciente[0]['CNUMETEL']}`;
+  document.getElementById('tel').innerHTML = `Telefone: ${formatarTel(paciente[0]['CNUMETEL'])}`;
   document.getElementById('email').innerHTML = `E-mail: ${paciente[0]['CEMAILPESS']}`;
+}
+
+function formatarTel(tel){
+  telddd = tel.slice(0,2);
+  telaux1 = tel.slice(2,7);
+  telaux2 = tel.slice(7,11);
+  return '(' + telddd + ') ' + telaux1 + '-' + telaux2;
 }
 
 function buscarEndereco(){
