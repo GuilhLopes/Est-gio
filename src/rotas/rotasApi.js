@@ -51,7 +51,7 @@ rotas.post('/agendamento', async function(req,res){
     let data = req.body.data;
     let end = req.body.endereco;
 
-    if(await agendamento.tratamentoDados(hora,data,end)){
+    if(await agendamento.tratamentoDados(undefined,hora,data,end,'salvar')){
         res.status(200).redirect('/calendario');
     }else{
         session.error = true;
@@ -62,8 +62,37 @@ rotas.post('/agendamento', async function(req,res){
 
 rotas.post('/listar_agendamentos', async function(req, res){
     let idpaciente = req.body.id;
-    let resposta = await agendamento.resgatarAgendamento(idpaciente);
+    let resposta = await agendamento.buscarAgendamentos(idpaciente);
     res.status(200).send(resposta.rows);
 });
+
+rotas.post('/buscar_agendamento', async function(req,res){
+    let idagend = req.body.id;
+    let resposta = await agendamento.resgatarAgendamento(idagend);
+    res.status(200).send(resposta.rows);
+});
+
+rotas.post('/edit_agendamento', async function(req,res){
+    let id = req.body.id;
+    let hora = req.body.hora;
+    let data = req.body.data;
+    let end = req.body.endereco;
+
+    if(await agendamento.tratamentoDados(id,hora,data,end,'update')){
+        res.redirect('/calendario');
+    }else{
+        session.error = true;
+        res.status(500).redirect('/edit_agend');
+    }
+});
+
+rotas.post('/inativar_agendamento', async function(req,res){
+    let id = req.body.id;
+    if(await agendamento.inativarAgendamento(id)){
+        res.redirect('/calendario');
+    }else{
+        res.redirect('/edit_agend');
+    }
+})
 
 module.exports = rotas;

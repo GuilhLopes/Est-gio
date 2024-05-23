@@ -41,5 +41,14 @@ rotas.get('/agendamento', verificarLogin,function(req,res){
   }
 });
 
+rotas.get('/edit_agend', verificarLogin, (req,res)=>{
+  if(!session.error){
+    res.render('edit_agend');
+  }else{
+    session.error = '';
+    res.render('edit_agend_e');
+  }
+});
+
 
 module.exports = rotas;

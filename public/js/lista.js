@@ -41,7 +41,6 @@ function fazerPost(url, body, callback) {
 
 function buscarAgendamento(){
   fazerPost('http://localhost:3000/api/listar_agendamentos',{id: id},function(agendamentos){
-    console.log(agendamentos);
     listar_agendamentos(agendamentos);
   })
 };

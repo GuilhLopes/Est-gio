@@ -37,21 +37,25 @@
 
       <main>
         <div class='dados'>
-          <h2 class="titulo">Agendamento</h2>
+          <h2 class="titulo">Editar Agendamento</h2>
           <div class='dados_p'>
             <p id="nome"></p>
             <p id="tel"></p>
             <p id="email"></p>
           </div>
             <div >
-              <form class="agendamento" action="/api/agendamento" method="POST">
+              <form class="agendamento" action="/api/edit_agendamento" method="POST">
+                <div class="cartao">
+                    <label>Id Agendamento</label>
+                    <input type="text" name="id" id="id" class="input-hora" readonly>
+                </div>
                 <div class="cartao">
                   <label>Data</label>
                   <input type="data" name="data" class="input" id="data" readonly>
                 </div>
                 <div class="cartao">
                     <label>Horário</label>
-                    <input type="time" name="hora" class="input-hora">
+                    <input type="time" name="hora" id="hora" class="input-hora">
                 </div>
                 <div class="cartao">
                   <label>Local</label>
@@ -59,9 +63,11 @@
                   </select>
                 </div>
             </div>
+            <p class="error">Dados inválidos ou está faltando dados</p>
             <div class="dbotao">
               <input type="submit" value="Salvar" class="botao"></input>
-              <button class="botaoCe" formaction="/calendario" formmethod="GET">Cancelar</button>
+              <button class="botaoE" formaction="/api/inativar_agendamento" formmethod="POST">Excluir</button>
+              <button class="botaoC" formaction="/calendario" formmethod="GET">Cancelar</button>
             </div>
             </form>
         </div>
@@ -71,6 +77,6 @@
   
       
         
-      <script src="/js/agendamento.js"></script>  
+      <script src="/js/edit_agend.js"></script>  
     </body>
   </html>
