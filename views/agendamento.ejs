@@ -36,6 +36,7 @@
       </div>
 
       <main>
+        
         <div class='dados'>
           <h2 class="titulo">Agendamento</h2>
           <div class='dados_p'>
@@ -43,15 +44,14 @@
             <p id="tel"></p>
             <p id="email"></p>
           </div>
-            <div >
-              <form class="agendamento" action="/api/agendamento" method="POST">
+            <div class="agendamento">
                 <div class="cartao">
                   <label>Data</label>
                   <input type="data" name="data" class="input" id="data" readonly>
                 </div>
                 <div class="cartao">
                     <label>Horário</label>
-                    <input type="time" name="hora" class="input-hora">
+                    <input type="time" name="hora" id="hora" class="input-hora">
                 </div>
                 <div class="cartao">
                   <label>Local</label>
@@ -60,17 +60,33 @@
                 </div>
             </div>
             <div class="dbotao">
-              <input type="submit" value="Salvar" class="botao"></input>
-              <button class="botaoCe" formaction="/calendario" formmethod="GET">Cancelar</button>
+              <button onclick="gravarAgendamento()" class="botao"> Salvar</button>
+              <button class="botaoCe" onclick="redirecionar('Calendario')">Cancelar</button>
             </div>
-            </form>
         </div>
-  
-
       </main>
-  
+      <div id="modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p>Aviso</p>
+          <p>Agendamento criado com sucesso</p>
+          <button id="fechar" onclick="redirecionar('Calendario')" class="botao">Continuar</button>
+        </div>
       
-        
+      </div>
+
+      <div id="modalerror" class="modal ">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p class="error">Erro ao Registrar</p>
+          <p class="error">Não foi possivel criar o agendamento!! Por falta de dados.</p>
+          <button id="fechar" onclick="fecharErro()" class="botao">Continuar</button>
+        </div>
+      
+      </div>
+      
       <script src="/js/agendamento.js"></script>  
     </body>
   </html>

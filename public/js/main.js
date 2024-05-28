@@ -98,6 +98,20 @@ function formatarTel(tel){
 }
 
 function redirecionar(tipo, id){
-  localStorage.setItem('id', id)
-  window.location = `/${tipo}`;
+  if(id != undefined){
+    localStorage.setItem('id', id)
+    window.location = `/${tipo}`;
+  }else{
+    abrirErro()
+  }
+}
+
+function abrirErro(){
+  let modal = document.getElementById('modalerror');
+  modal.style.display = 'block';
+}
+
+function fecharErro(){
+  let modal = document.getElementById('modalerror');
+  modal.style.display = 'none';
 }

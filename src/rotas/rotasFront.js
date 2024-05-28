@@ -33,21 +33,11 @@ rotas.get('/calendario',verificarLogin, function(req,res) {
 });
 
 rotas.get('/agendamento', verificarLogin,function(req,res){
-  if(!session.error){
     res.render('agendamento');
-  }else{
-    session.error = '';
-    res.render('agendamento_e');
-  }
 });
 
 rotas.get('/edit_agend', verificarLogin, (req,res)=>{
-  if(!session.error){
     res.render('edit_agend');
-  }else{
-    session.error = '';
-    res.render('edit_agend_e');
-  }
 });
 
 

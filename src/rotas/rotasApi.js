@@ -52,10 +52,9 @@ rotas.post('/agendamento', async function(req,res){
     let end = req.body.endereco;
 
     if(await agendamento.tratamentoDados(undefined,hora,data,end,'salvar')){
-        res.status(200).redirect('/calendario');
+        res.status(200).send('deu certo')
     }else{
-        session.error = true;
-        res.status(500).redirect('/agendamento');
+        res.status(500).send('não')
     }
 
 });
@@ -63,7 +62,11 @@ rotas.post('/agendamento', async function(req,res){
 rotas.post('/listar_agendamentos', async function(req, res){
     let idpaciente = req.body.id;
     let resposta = await agendamento.buscarAgendamentos(idpaciente);
-    res.status(200).send(resposta.rows);
+    if(!resposta.rows){
+        res.status(404).send('Sem agendamentos');
+    }else{
+        res.status(200).send(resposta.rows);
+    }
 });
 
 rotas.post('/buscar_agendamento', async function(req,res){
@@ -79,19 +82,18 @@ rotas.post('/edit_agendamento', async function(req,res){
     let end = req.body.endereco;
 
     if(await agendamento.tratamentoDados(id,hora,data,end,'update')){
-        res.redirect('/calendario');
+        res.status(200).send('deu certo');
     }else{
-        session.error = true;
-        res.status(500).redirect('/edit_agend');
+        res.status(500).send('error');
     }
 });
 
 rotas.post('/inativar_agendamento', async function(req,res){
     let id = req.body.id;
     if(await agendamento.inativarAgendamento(id)){
-        res.redirect('/calendario');
+        res.status(200).send('Inativou')
     }else{
-        res.redirect('/edit_agend');
+        res.status(500).send('Não inativou')
     }
 })
 

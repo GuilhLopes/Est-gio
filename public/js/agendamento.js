@@ -4,7 +4,6 @@ buscarPacientes();
 const nome = document.getElementById('login').innerHTML;
 buscarEndereco();
 const data = localStorage.getItem('data');
-console.log(data);
 
 document.getElementById('data').value = data;
 
@@ -28,25 +27,63 @@ function fazerGet(url){
   return request.responseText;
 }
 
-function fazerPost(url, body, callback) {
+function fazerPost(url, body, callback, json) {
   let request = new XMLHttpRequest();
   request.open('POST', url);
   request.setRequestHeader('Content-Type', 'application/json');
   
   request.onreadystatechange = function() {
-      if (request.readyState === 4 && request.status === 200) {
-          console.log(request.responseText)
+      if (request.readyState === 4){
+        if(json){
           callback(JSON.parse(request.responseText));
+        }else{
+          callback(request.status);
+        }
       }
   };
   
   request.send(JSON.stringify(body));
 }
 
+function gravarAgendamento(){
+  let data = document.getElementById('data').value;
+  let hora = document.getElementById('hora').value;
+  let end = document.getElementById('endereco').value;
+  let dados = {
+    hora: hora,
+    data: data,
+    endereco: end
+  }
+
+  fazerPost('http://localhost:3000/api/agendamento', dados, function(agendamento){
+    if(agendamento == 200){
+      abrirSucesso()
+    }else{
+      abrirErro()
+    }
+  },false)
+
+}
+
+function abrirErro(){
+  let modal = document.getElementById('modalerror');
+  modal.style.display = 'block';
+}
+
+function abrirSucesso(){
+  let modal = document.getElementById('modal');
+  modal.style.display = 'block';
+}
+
+function fecharErro(){
+  let modal = document.getElementById('modalerror');
+  modal.style.display = 'none';
+}
+
 function buscarPacientes() {
   fazerPost('http://localhost:3000/api/paciente', {id:id}, function(pacientes) {
       alterarPaciente(pacientes);
-  });
+  }, true);
 }
 
 function alterarPaciente(paciente){
@@ -65,7 +102,7 @@ function formatarTel(tel){
 function buscarEndereco(){
   fazerPost('http://localhost:3000/api/endereco', {nome: nome}, function(endereco){
     inserirEndereco(endereco);
-  });
+  }, true);
 }
 
 function inserirEndereco(endereco){

@@ -1,4 +1,5 @@
 const id = localStorage.getItem('id');
+
 buscarPacientes();
 
 function abrir(){
@@ -13,9 +14,7 @@ function fechar(){
   document.getElementById('iten').setAttribute('onmouseout', 'abrir()')
 }
 
-function redirecionar(tipo){
-  window.location = "/" + tipo;
-}
+
 
 var idagend = 0;
 
@@ -31,7 +30,8 @@ document.addEventListener("DOMContentLoaded", async function() {
   let currentMonth = currentDate.getMonth() + 1;
   let currentYear = currentDate.getFullYear();
 
-  renderCalendar(currentMonth, currentYear, dias);
+  
+  carregarCalendario(currentMonth, currentYear, dias);
 
   prevMonthBtn.addEventListener("click", function() {
     currentMonth--;
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async function() {
       currentMonth = 11;
       currentYear--;
     }
-    renderCalendar(currentMonth, currentYear, dias);
+    carregarCalendario(currentMonth, currentYear, dias);
   });
 
   nextMonthBtn.addEventListener("click", function() {
@@ -48,10 +48,10 @@ document.addEventListener("DOMContentLoaded", async function() {
       currentMonth = 0;
       currentYear++;
     }
-    renderCalendar(currentMonth, currentYear, dias);
+    carregarCalendario(currentMonth, currentYear, dias);
   });
 
-  function renderCalendar(month, year, diasAgend) {
+  function carregarCalendario(month, year, diasAgend) {
     let data = new Date();
 
     const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         dayElement.setAttribute('onclick', `editagend(${idagend})`);
       } else if (i < data.getDate() && month <= (data.getMonth() + 1) && year <= data.getFullYear()) {
         dayElement.classList.add("calendar-day-button");
-        dayElement.setAttribute('onclick', `alert('Não pode fazer um agendamento em um dia anterior a data atual!!')`);
+        dayElement.setAttribute('onclick', `abrirModal()`);
       } else if (i == data.getDate() && month == (data.getMonth() + 1) && year == data.getFullYear()) {
         dayElement.classList.add("diaAtual");
         dayElement.setAttribute('onclick', `agendar(${i}, ${month}, ${year})`);
@@ -96,11 +96,13 @@ document.addEventListener("DOMContentLoaded", async function() {
 })
 
 function verificarDia(dataA, dia) {
-  for (let item of dataA) {
-      if (item[0] === dia) {
-          idagend = item[1]
-          return true;
-      }
+  if(dataA){
+    for (let item of dataA) {
+        if (item[0] === dia) {
+            idagend = item[1]
+            return true;
+        }
+    }
   }
   return false;
 }
@@ -140,7 +142,7 @@ function fazerPost(url, body) {
               if (request.status === 200) {
                   resolve(JSON.parse(request.responseText));
               } else {
-                  reject(request.statusText);
+                  resolve(request.status);
               }
           }
       };
@@ -152,13 +154,17 @@ function fazerPost(url, body) {
 
 async function buscarAgendamento(){
   const agendamentos = await fazerPost('http://localhost:3000/api/listar_agendamentos',{id: id});
-  let datas = [];
-  for(let i = 0; i < agendamentos.length; i++){
-    let [data, hora] = formatarhora(agendamentos[i]);
-    let id = agendamentos[i]['NNUMEAGEND'];
-    datas.push([data, id]);
+  if(agendamentos == 404){
+    return false;
+  }else{
+    let datas = [];
+    for(let i = 0; i < agendamentos.length; i++){
+      let [data, hora] = formatarhora(agendamentos[i]);
+      let id = agendamentos[i]['NNUMEAGEND'];
+      datas.push([data, id]);
+    }
+    return datas;
   }
-  return datas;
 };
 
 function formatarhora(datac){
@@ -189,4 +195,18 @@ function formatarTel(tel){
   telaux1 = tel.slice(2,7);
   telaux2 = tel.slice(7,11);
   return '(' + telddd + ') ' + telaux1 + '-' + telaux2;
+}
+
+function redirecionar(tipo){
+  window.location = "/" + tipo;
+}
+
+function abrirModal(){
+  let modal = document.getElementById('modal');
+  modal.style.display = 'block';
+}
+
+function fecharModal(){
+  let modal = document.getElementById('modal');
+  modal.style.display = 'none';
 }

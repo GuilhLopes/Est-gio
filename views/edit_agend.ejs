@@ -43,8 +43,7 @@
             <p id="tel"></p>
             <p id="email"></p>
           </div>
-            <div >
-              <form class="agendamento" action="/api/edit_agendamento" method="POST">
+            <div class="agendamento">
                 <div class="cartao">
                     <label>Id Agendamento</label>
                     <input type="text" name="id" id="id" class="input-hora" readonly>
@@ -64,16 +63,72 @@
                 </div>
             </div>
             <div class="dbotao">
-              <input type="submit" value="Salvar" class="botao"></input>
-              <button class="botaoE" formaction="/api/inativar_agendamento" formmethod="POST">Excluir</button>
-              <button class="botaoC" formaction="/calendario" formmethod="GET">Cancelar</button>
+              <button class="botao" onclick="EditarAgendamento()">Salvar</button>
+              <button class="botaoE" onclick="abrirExcluir()">Excluir</button>
+              <button class="botaoC" onclick="redirecionar('Calendario')">Cancelar</button>
             </div>
-            </form>
         </div>
   
 
       </main>
-  
+
+      <div id="modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p>Aviso</p>
+          <p>Agendamento alterado com sucesso</p>
+          <button id="fechar" onclick="redirecionar('Calendario')" class="botao">Continuar</button>
+        </div>
+      
+      </div>
+
+      <div id="modalerror" class="modal ">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p class="error">Erro ao Editar</p>
+          <p class="error">Não foi possivel editar o agendamento!! Por falta de dados.</p>
+          <button id="fechar" onclick="fecharErro()" class="botao">Continuar</button>
+        </div>
+      
+      </div>
+
+      <div id="modalexcluir" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p>Aviso</p>
+          <p>Dejesa excluir esse agendamento?</p>
+          <div class="dbotao">
+            <button id="fechar" onclick="excluirAgendamento()" class="botaoC">Sim</button>
+            <button id="fechar" onclick="fecharExcluir()" class="botaoEc">Não</button>
+          </div>
+        </div>
+
+        <div id="modalexsucesso" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+            <p>Aviso</p>
+            <p>Agendamento excluido com sucesso</p>
+            <button id="fechar" onclick="redirecionar('Calendario')" class="botao">Continuar</button>
+          </div>
+        
+        </div>
+
+        <div id="modaleerro" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+            <p>Erro</p>
+            <p>Não foi possivel excluir o agendamento</p>
+            <div class="dbotao">
+              <button id="fechar" onclick="fecharEerro()" class="botaoEc">fechar</button>
+            </div>
+          </div>
+      
+      </div>
       
         
       <script src="/js/edit_agend.js"></script>  

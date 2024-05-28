@@ -31,15 +31,18 @@ function fazerGet(url){
   return request.responseText;
 }
 
-function fazerPost(url, body, callback) {
+function fazerPost(url, body, callback, json) {
   let request = new XMLHttpRequest();
   request.open('POST', url);
   request.setRequestHeader('Content-Type', 'application/json');
   
   request.onreadystatechange = function() {
-      if (request.readyState === 4 && request.status === 200) {
-          console.log(request.responseText)
+      if (request.readyState === 4){
+        if(json){
           callback(JSON.parse(request.responseText));
+        }else{
+          callback(request.status);
+        }
       }
   };
   
@@ -49,7 +52,7 @@ function fazerPost(url, body, callback) {
 function buscarAgendamento(){
     fazerPost('http://localhost:3000/api/buscar_agendamento',{id: idagend}, function(agendamento){
         carregarAgend(agendamento)
-    })
+    },true)
 }
 
 function carregarAgend(agend){
@@ -63,7 +66,7 @@ function carregarAgend(agend){
 function buscarPacientes() {
   fazerPost('http://localhost:3000/api/paciente', {id:id}, function(pacientes) {
       alterarPaciente(pacientes);
-  });
+  }, true);
 }
 
 function alterarPaciente(paciente){
@@ -82,7 +85,7 @@ function formatarTel(tel){
 function buscarEndereco(){
   fazerPost('http://localhost:3000/api/endereco', {nome: nome}, function(endereco){
     inserirEndereco(endereco);
-  });
+  }, true);
 }
 
 function inserirEndereco(endereco){
@@ -103,4 +106,78 @@ function inserirEndereco(endereco){
 
 function redirecionar(tipo){
   window.location = "/" + tipo;
+}
+
+
+function EditarAgendamento(){
+  let id = document.getElementById('id').value;
+  let data = document.getElementById('data').value;
+  let hora = document.getElementById('hora').value;
+  let end = document.getElementById('endereco').value;
+  let dados = {
+    id: id,
+    hora: hora,
+    data: data,
+    endereco: end
+  }
+
+  fazerPost('http://localhost:3000/api/edit_agendamento', dados, function(agendamento){
+    if(agendamento == 200){
+      abrirSucesso()
+    }else{
+      abrirErro()
+    }
+  },false)
+
+}
+
+function abrirSucesso(){
+  let modal = document.getElementById('modal');
+  modal.style.display = 'block';
+}
+
+function abrirErro(){
+  let modal = document.getElementById('modalerror');
+  modal.style.display = 'block';
+}
+
+function fecharErro(){
+  let modal = document.getElementById('modalerror');
+  modal.style.display = 'none';
+}
+
+function abrirEsucesso(){
+  let modal = document.getElementById('modalexsucesso');
+  modal.style.display = 'block';
+}
+
+function abrirEerro(){
+  let modal = document.getElementById('modaleerro');
+  modal.style.display = 'block';
+}
+
+function fecharEerro(){
+  let modal = document.getElementById('modaleerro');
+  modal.style.display = 'none';
+}
+
+function excluirAgendamento(){
+  let id = document.getElementById('id').value;
+  fazerPost('http://localhost:3000/api/inativar_agendamento', {id:id}, function(resposta){
+    if(resposta == 200){
+      abrirEsucesso()
+    }else{
+      abrirEerro()
+    }
+  },false)
+}
+
+function abrirExcluir(){
+  let modal = document.getElementById('modalexcluir')
+  modal.style.display = 'block';
+}
+
+function fecharExcluir(){
+  let modal = document.getElementById('modalexcluir')
+  modal.style.display = 'none';
 }

@@ -157,3 +157,7 @@ h{
   border: 0px;
   background-color: white;
 }
+
+button{
+  cursor: pointer;
+}
