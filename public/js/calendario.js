@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         dayElement.setAttribute('onclick', `agendar(${i}, ${month}, ${year})`);
       } else {
         dayElement.classList.add("calendar-day-button");
-        dayElement.setAttribute('onclick', `agendar(${i}, ${month}, ${year})`);
+        dayElement.setAttribute('onclick  ', `agendar(${i}, ${month}, ${year})`);
       }
 
       calendarBody.appendChild(dayElement);
