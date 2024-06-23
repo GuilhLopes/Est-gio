@@ -20,6 +20,11 @@ rotas.get('/', function(req,res){
     }
 });
 
+rotas.get('/sair', function(req,res){
+  req.session.nome = null;
+  res.redirect('/')
+});
+
 rotas.get('/pacientes', verificarLogin,function(req,res){
     res.render('Pacientes');
 });
