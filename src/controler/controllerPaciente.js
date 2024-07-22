@@ -4,9 +4,9 @@ let paciente = new Paciente()
 class controllerPaciente{
     constructor(){}
 
-    async listarPacientes(){
+    async listarPacientes(medico){
         
-        let pacientes = await paciente.buscarPacientes();
+        let pacientes = await paciente.buscarPacientes(medico);
         if(pacientes.rows.length == 0){
             return null;
         }else{

@@ -22,9 +22,28 @@ function fazerGet(url){
 }
 
 function retornarPacientes(){
-  let pacientes = fazerGet('http://localhost:3000/api/pacientes');
-  pacientes = JSON.parse(pacientes);
-  addLinhas(pacientes);
+  let medico = document.getElementById('usuario').innerHTML;
+  fazerPost('http://localhost:3000/api/pacienteMedico', {nome: medico}, function(paciente){
+    addLinhas(paciente);
+  }, true);
+}
+
+function fazerPost(url, body, callback, json) {
+  let request = new XMLHttpRequest();
+  request.open('POST', url);
+  request.setRequestHeader('Content-Type', 'application/json');
+  
+  request.onreadystatechange = function() {
+      if (request.readyState === 4){
+        if(json){
+          callback(JSON.parse(request.responseText));
+        }else{
+          callback(request.status);
+        }
+      }
+  };
+  
+  request.send(JSON.stringify(body));
 }
 
 function addLinhas(pacientes){

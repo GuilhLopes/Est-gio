@@ -128,6 +128,7 @@
     height: 25px;
     border-radius: 20px;
     margin: 10px 0px;
+    padding-left: 10px;
   }
 
   .input-end{
@@ -179,7 +180,7 @@
   width: 200px;
   height: 30;
   margin-top: 30px;
-  background-color: red;
+  background-color: #ff0000;
   border: 0;
   border-radius: 20px;
   color:black;
