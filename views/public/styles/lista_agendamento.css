@@ -1,16 +1,23 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
 .cabecalho{
   display: flex;
-  font-size: 0.5cm;
+  font-size: 1rem;
   border: 1px solid black;
   margin: 0px;
   padding: 5px ;
   justify-content: space-between;
   align-items: center;
-  background-color: #3B8142;
+  background-color: #457a39;
 }
 body{
   margin: 0px;
-  background-color: #90D096;
+  background-color: #87bd77;
 }
 
 nav{
@@ -35,21 +42,24 @@ a{
 }
 
 .itens{
-  height:92%;
   width: 0px;
   display: flex;
   flex-direction: column;
   position: fixed;
+  top:4rem;
+  bottom: 0;
   overflow: hidden;
-  background-color: #3B8142;
+  background-color: #457a39;
   transition: width 0.3s; 
   justify-content: space-between;
+  padding-bottom: 1rem;
 }
 
 .itens button{
   display: block;
   border: 1px solid black;
-  background-color: #90D096;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #87bd77;
   text-align: center;
   width:230px;
   border-radius: 20px;
@@ -60,8 +70,10 @@ a{
 }
 
 .itens button:hover{
-  background-color: aqua;
+  background-color: #6ba15d;
+  box-shadow: none;
 }
+
 
 main{
   padding: 12px;
@@ -118,13 +130,9 @@ main{
 }
 
 .thead{
-  background-color: #5FBD69;
+  background-color: #71a662;
 }
 
-h{
-  margin-top: 20px;
-  font-size: 25px; 
-}
 
 .logo{
   display: flex;
@@ -136,20 +144,22 @@ h{
 }
 
 .dados{
-  background-color: #5FBD69;
-  width: 100%;
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  flex-flow: column wrap;
+  align-items: center;
+  background-color: #71a662;
+  width: 90vw;
   border-radius: 20px;
-  text-align: center;
-}
-
-.titulo, .dados_p{
-  padding-left: 20px;
+  word-break: break-all;
 }
 
 .dados_p{
   display: flex;
-  width: 98%;
-  justify-content: space-between;
+  gap: 2rem;
+  justify-content: space-around;
+  width: 90%;
   font-size: 20px;
 }
 
@@ -161,3 +171,52 @@ h{
 button{
   cursor: pointer;
 }
+
+@media (max-width: 1200px){
+  h2{
+    font-size: 1rem;
+  }
+  .col-ro{
+    font-size: 0.85rem;
+    justify-content: center;
+  }
+
+  .dados_p{
+    font-size: 0.85rem;
+  }
+
+}
+
+@media (max-width:900px){
+  .col-ro{
+    font-size: 0.8rem;
+    justify-content: start;
+  }
+}
+
+@media (max-width: 600px) {
+  .usuario{
+    display: none;
+  }
+  .logo{
+    width: 10rem;
+  }
+  .titulo{
+    display: none;
+  }
+  .ini{
+    width: 24px;
+  }
+
+  .tabela{
+    font-size: 0.90rem;
+  }
+  .col-ro{
+    font-size: 0.7rem;
+    justify-content: start;
+  }
+  .dados_p{
+    flex-flow: column;
+    font-size: 0.85rem;
+  }
+} 

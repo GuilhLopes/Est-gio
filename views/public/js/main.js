@@ -68,7 +68,7 @@ function addLinhas(pacientes){
 
     /*Criando a div da imagem do agendamento */
     let divlista = document.createElement('div');
-    divlista.setAttribute("class", 'col-ro');
+    divlista.setAttribute("class", 'col-ro b-tabela');
 
     let b = document.createElement('button');
     b.setAttribute('class', 'calend');
@@ -83,7 +83,7 @@ function addLinhas(pacientes){
     divlista.append(b);
 
     let divagend = document.createElement('div');
-    divagend.setAttribute("class", 'col-ro');
+    divagend.setAttribute("class", 'col-ro b-tabela');
 
     let agend = document.createElement('button');
     agend.setAttribute('class', 'calend');

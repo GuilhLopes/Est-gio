@@ -29,7 +29,6 @@ rotas.post('/login', async function(req, res){
 
 rotas.post('/pacienteMedico', async function(req, res){
     let medico = req.body.nome;
-    console.log(medico);
     let pacientes = await paciente.listarPacientes(medico);
     res.status(200).send(pacientes.rows);
 

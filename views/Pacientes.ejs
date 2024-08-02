@@ -12,14 +12,14 @@
           <div class='menu'>
             <img src='/static/Vector.png' class='imgMenu' id='img' onclick='abrir()'></img>
           </div>
-          <p class="robinson">Lista de Pacientes</p>
+          <p class="titulo">Lista de Pacientes</p>
         </div>
         <div class='logo'>
           <img src='/static/unimed.png' class="img"></img>
         </div>
-        <nav>
+        <div class="usuario">
             <p id='usuario'><%= usuario %></p>
-        </nav>
+        </div>
         
         
     </header>
@@ -34,16 +34,16 @@
       </div>
     </div>
     <main id='main'>
-      <h>Lista de pacientes</h>
+      <h1>Lista de pacientes</h1>
       
       <div class='fundo'>
         <div class='tabela' id='tabela'>
           <div class='thead'>
-            <div class='inicio'>Nome</div>
+            <div class='col-ro inicio'>Nome</div>
             <div class='col-ro'>E-mail</div>
             <div class='col-ro'>Telefone</div>
             <div class='col-ro'>Verificar agendamentos</div>
-            <div class='final'>Agendar</div>
+            <div class='col-ro final'>Agendar</div>
           </div>
         </div>
       </div>

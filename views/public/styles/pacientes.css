@@ -1,20 +1,34 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
 .cabecalho{
     display: flex;
-    font-size: 0.5cm;
+    position: relative;
+    top:0;
+    right: 0;
+    min-width: 100vw;
+    font-size: 1rem;
     border: 1px solid black;
-    margin: 0px;
-    padding: 5px ;
+    padding: 5px;
     justify-content: space-between;
     align-items: center;
-    background-color: #3B8142;
+    background-color: #457a39;
+}
+
+h1{
+  font-size: 1.3rem;
 }
 
 body{
   margin: 0px;
-  background-color: #90D096;
+  background-color: #87bd77;
 }
 
-nav{
+.usuario{
     display: flex;
     justify-content: center;
     width: 200px;
@@ -35,23 +49,27 @@ a{
   align-items: center;
 }
 
+
 .itens{
-  height:92%;
   width: 0px;
   display: flex;
   flex-direction: column;
   position: fixed;
+  top:4rem;
+  bottom: 0;
   overflow: hidden;
-  background-color: #3B8142;
+  background-color: #457a39;
   transition: width 0.3s; 
   justify-content: space-between;
+  padding-bottom: 1rem;
 }
 
 
 .itens button{
   display: block;
   border: 1px solid black;
-  background-color: #90D096;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #87bd77;
   text-align: center;
   width:230px;
   border-radius: 20px;
@@ -60,8 +78,10 @@ a{
   margin-right: 5px;
   padding: 10px 12px;
 }
+
 .itens button:hover{
-  background-color: aqua;
+  background-color: #6ba15d;
+  box-shadow: none;
 }
 
 main{
@@ -70,7 +90,7 @@ main{
   flex-direction: column;
   transition: margin-left 0.5s;
   align-items: center;
-  width: 98%;
+  width: 100%;
   height: 70%;
 }
 
@@ -78,7 +98,7 @@ main{
   border-radius: 20px;
   display:flex;
   flex-direction:column;
-  width: 100%;
+  max-width: 100%;
 }
 
 .fundo{
@@ -103,11 +123,14 @@ main{
   margin-left:10px;
 }
 
-.col-ro, .inicio, .final{
+.col-ro{
+  display: flex;
   border: 1px solid black;
   padding:10px;
-  width:19%;
-  text-align:center;
+  width:25%;
+  justify-content: center;
+  word-break: break-all;
+  font-size: 1rem;
 }
 
 .inicio{
@@ -119,13 +142,9 @@ main{
 }
 
 .thead{
-  background-color: #5FBD69;
+  background-color: #71a662;
 }
 
-h{
-  margin-top: 20px;
-  font-size: 25px; 
-}
 
 .logo{
   display: flex;
@@ -135,7 +154,7 @@ h{
 }
 
 .logo img{
-  width: 150px;
+  width: 9rem;
 }
 
 .calend{
@@ -150,7 +169,7 @@ button{
 
 .error{
   text-align: center;
-  font-size: 20px;
+  font-size: 1.1rem;
   color: red;
 }
 
@@ -172,7 +191,8 @@ button{
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  gap: 2rem;
+  font-size: 1.1rem;
   margin: 15% auto; 
   padding: 20px;
   border: 1px solid #888;
@@ -190,4 +210,52 @@ button{
   border-radius: 20px;
   color:black;
   margin-bottom: 10px;
+}
+.thead .col-ro{
+  justify-content: center;
+}
+
+@media (max-width: 1200px){
+  .col-ro{
+    font-size: 0.85rem;
+    justify-content: center;
+  }
+
+  h1{
+    font-size: 1rem;
+  }
+}
+
+@media (max-width:900px){
+  .col-ro{
+    font-size: 0.8rem;
+    justify-content: start;
+  }
+}
+
+@media (max-width: 600px) {
+  .usuario{
+    display: none;
+  }
+  .logo{
+    width: 10rem;
+  }
+  .titulo{
+    display: none;
+  }
+  .ini{
+    width: 24px;
+  }
+
+  .tabela{
+    font-size: 0.90rem;
+  }
+  .col-ro{
+    font-size: 0.7rem;
+    justify-content: start;
+  }
+} 
+
+.b-tabela{
+  justify-content: center;
 }
