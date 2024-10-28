@@ -1,8 +1,8 @@
 const express = require('express');
 const rotas = express.Router();
-const Medico = require('../controler/controllerMedico.js');
-const Paciente = require('../controler/controllerPaciente.js');
-const Agendamento = require('../controler/controllerAgendamento.js');
+const Medico = require('../controllers/controllerMedico.js');
+const Paciente = require('../controllers/controllerPaciente.js');
+const Agendamento = require('../controllers/controllerAgendamento.js');
 const session = require('express-session');
 
 let medico = new Medico();

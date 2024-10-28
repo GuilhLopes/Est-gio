@@ -17,7 +17,8 @@ class controllerAgendamento{
     }
 
     async tratamentoDados(id,hora, data, end, tipo){
-        if(!hora || !data || !end){
+        console.log( await this.verificarAgendamentos(session.loginid, `${data} ${hora}:00`));
+        if((!hora || !data || !end) || ( await this.verificarAgendamentos(session.loginid, `${data} ${hora}:00`))){
             return false;
         }else{
             if(tipo == 'salvar'){
@@ -44,6 +45,18 @@ class controllerAgendamento{
             }
             return true;
         }
+    }
+
+    async verificarAgendamentos(idmedico, data){
+        let datas = await agendamento.agendamentoMedico(idmedico);
+        datas.rows.forEach((dataaux) =>{
+           if(data == dataaux['DATA']){
+                return false;
+            }else{
+                return true;
+            }
+        });
+        return true;
     }
 
     async buscarAgendamentos(idpaciente){

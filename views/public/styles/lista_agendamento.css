@@ -90,10 +90,12 @@ main{
   display:flex;
   flex-direction:column;
   width: 100%;
+  
 }
 
 .fundo{
   border: 1px solid black;
+  overflow-y: auto;
 }
 
 .fundo{

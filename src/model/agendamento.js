@@ -17,6 +17,22 @@ class agendamento{
         }
     }
 
+    async agendamentoMedico(idmedico){
+        let conn;
+
+        try{
+            conn = await conectar();
+
+            let select = "select TO_CHAR(a.DAGENDAMENTO, 'DD/MM/YYYY HH24:MI:SS') data from HSSAGEND a where a.NNUMEPRES = :1 and a.CSITUAGEND = 'A' and a.DAGENDAMENTO > SYSDATE";
+            let data = await conn.execute(select, [idmedico], {outFormat: oracledb.OUT_FORMAT_OBJECT});
+            await conn.close();
+            return data;
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     async gravarAgendamento(dados) {
         let conn;
 
