@@ -74,6 +74,6 @@ let controlEmail = new ControllerEmail();
 
 controlEmail.construir_email();
 
-cron.schedule('26 10 * * *', function() {
+cron.schedule('04 20 * * *', function() {
     controlEmail.construir_email();
   });

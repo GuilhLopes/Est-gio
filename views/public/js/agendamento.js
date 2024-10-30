@@ -55,6 +55,7 @@ function gravarAgendamento(){
     endereco: end
   }
 
+  console.log(dados)
   fazerPost('http://localhost:3000/api/agendamento', dados, function(agendamento){
     if(agendamento == 200){
       abrirSucesso()

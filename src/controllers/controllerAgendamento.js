@@ -17,8 +17,8 @@ class controllerAgendamento{
     }
 
     async tratamentoDados(id,hora, data, end, tipo){
-        console.log( await this.verificarAgendamentos(session.loginid, `${data} ${hora}:00`));
-        if((!hora || !data || !end) || ( await this.verificarAgendamentos(session.loginid, `${data} ${hora}:00`))){
+        console.log( await this.verificarAgendamentos(session.loginid, `${data} ${hora}:00`, end));
+        if((!hora || !data || !end) || ( await this.verificarAgendamentos(session.loginid, `${data} ${hora}:00`, end))){
             return false;
         }else{
             if(tipo == 'salvar'){
@@ -49,14 +49,13 @@ class controllerAgendamento{
 
     async verificarAgendamentos(idmedico, data){
         let datas = await agendamento.agendamentoMedico(idmedico);
+        let aux = false;
         datas.rows.forEach((dataaux) =>{
-           if(data == dataaux['DATA']){
-                return false;
-            }else{
-                return true;
+            if(data == dataaux['DATA']){
+                aux = true;
             }
         });
-        return true;
+        return aux;
     }
 
     async buscarAgendamentos(idpaciente){
