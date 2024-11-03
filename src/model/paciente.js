@@ -12,7 +12,7 @@ class paciente{
         try{
             conn = await conectar();
 
-            let select = "SELECT P.NNUMEPESS, P.CNOMEPESS, T.CNUMETEL, P.CEMAILPESS FROM HSSPESS P, hsspres pres, UNIPESSEQUI upeeq, UNIPRESEQUI upreq, UNIPESSTEL U ,HSSTEL T WHERE P.NNUMEPESS = U.NNUMEPESS AND T.NNUMETEL = U.NNUMETEL and P.NNUMEPESS = upeeq.NNUMEPESS and upeeq.NNUMEEQUI = upreq.NNUMEEQUI and upreq.NNUMEPRES = pres.NNUMEPRES and upreq.CPRINCPRES = 'S' AND U.CPRINCTEL = 'S' and pres.CLOGPRES = :1";
+            let select = "SELECT P.NNUMEPESS, P.CNOMEPESS, T.CNUMETEL, P.CEMAILPESS FROM HSSPESS P, hsspres pres, UNIPRESEQUI upreq, UNIPESSTEL U ,HSSTEL T WHERE P.NNUMEPESS = U.NNUMEPESS AND T.NNUMETEL = U.NNUMETEL and p.NNUMEEQUI = upreq.NNUMEEQUI and upreq.NNUMEPRES = pres.NNUMEPRES and upreq.CPRINCPRES = 'S' AND U.CPRINCTEL = 'S' and pres.CLOGPRES = :1";
             let pacientes = await conn.execute(select, [medico], {outFormat: oracledb.OUT_FORMAT_OBJECT});
             await conn.close();
             return pacientes;
